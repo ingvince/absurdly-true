@@ -1,0 +1,13 @@
+import { chromium } from 'playwright';
+import { spawn } from 'child_process';
+import fs from 'fs';
+const srv = spawn('python3', ['-m', 'http.server', '8125', '--bind', '127.0.0.1'], { cwd: '/home/claude/pig/web', stdio: 'ignore' });
+await new Promise(r => setTimeout(r, 800));
+const b = await chromium.launch(); const p = await b.newPage();
+p.on('pageerror', e => console.log('[pageerror]', String(e).slice(0, 400)));
+await p.goto('http://127.0.0.1:8125/index.html'); await p.waitForFunction(() => window.ready || window.__err);
+const r = await p.evaluate(async () => { const B = await import('./brand.js'); return [B.banner(), B.profile()]; });
+fs.mkdirSync('out/brand', { recursive: true });
+fs.writeFileSync('out/brand/banner_2560x1440.png', Buffer.from(r[0].split(',')[1], 'base64'));
+fs.writeFileSync('out/brand/profile_800x800.png', Buffer.from(r[1].split(',')[1], 'base64'));
+await b.close(); srv.kill();
