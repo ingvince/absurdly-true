@@ -65,13 +65,26 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
 - Commit the final files to `videos/<date>_<slug>/` (final_captions.mp4, final_nocaptions.mp4, voice.mp3, phrases.json,
   metadata.md) and push. Upload with `vidiq_video_upload` using the raw URL
   `https://raw.githubusercontent.com/ingvince/absurdly-true/main/videos/<date>_<slug>/final_captions.mp4`.
-- SEO (always): run `vidiq_keyword_research` on the topic; YouTube title ≤ 100 chars with the main keyword + emoji +
-  `#shorts`; description = hook line, 1-2 lines of story, "📜 A true story…", "🔔 Subscribe for a new absurdly true story
-  every day!", "📱 Also on TikTok: @AbsurdlyTrue_Shorts", then 6-8 hashtags; 12-16 tags from the research; category 27
-  (Education); privacyStatus public with publishAt = today's YouTube slot (schedule below).
-- TikTok: caption with hook + emoji + 1 line + "Follow for a new absurdly true story every day! 📜" + ~8 hashtags
-  (#history #truestory #historytok #didyouknow #fyp + topic tags); privacyLevel PUBLIC_TO_EVERYONE, allowComment true,
-  musicUsageConfirmed true, isAiGenerated true; publishAt = today's TikTok slot.
+- SEO & reach checklist (owner request: fill EVERY available field, maximise discoverability — always):
+  1. Research: `vidiq_keyword_research` on the topic (main keyword + 2-3 variants: people, place, year, "true story",
+     "history facts"); check `vidiq_trending_videos` / `vidiq_outliers` for the niche to borrow proven angles and hashtags.
+  2. Titles: write 5 candidates (`vidiq_generate_titles` can help), score them with `vidiq_score_title`, keep the best.
+     Main keyword in the first ~40 chars (Shorts feed cuts long titles), curiosity gap, 1 emoji, end with `#shorts`, ≤ 100.
+  3. YouTube description (≥ 600 chars, keyword-rich, natural): hook line with main keyword; 3-5 sentences telling the
+     story with names, place, year and the "absurd" twist; a comment-bait question ("Would you have fired the shot? 👇");
+     "📜 A true story…", "🔔 Subscribe for a new absurdly true story every day!", "📱 Also on TikTok: @AbsurdlyTrue_Shorts";
+     then 5-8 hashtags (first 3 = most relevant, they show above the title; never more than 15).
+  4. YouTube tags: fill toward the 500-char limit (20-30 tags): main keyword, variants, names, place, year, era, topic
+     phrases, "absurdly true", "history shorts", "true story", "did you know", "weird history", "history facts".
+  5. YouTube settings: categoryId 27 (Education), privacyStatus public, publishAt = today's YouTube slot. Custom
+     thumbnail (`thumbnailImageId`) only if the channel is verified — Shorts usually ignore it, so skip if refused.
+  6. TikTok caption (TikTok search is SEO): first line = hook with main keyword + emoji; 2-3 lines of story with the
+     keywords written as plain words (names, place, year); a comment-bait question; "Follow for a new absurdly true
+     story every day! 📜"; 6-8 hashtags mixing broad (#history #truestory #historytok #didyouknow #fyp) and niche topic
+     tags from the research. privacyLevel PUBLIC_TO_EVERYONE, allowComment true, musicUsageConfirmed true,
+     isAiGenerated true (mandatory disclosure), brandContent/brandOrganic false; publishAt = today's TikTok slot.
+  7. In the video itself (biggest factor): hook in the first 1-2 s with the keyword on screen in the captions, no slow
+     intro, loop-friendly ending. Never fake facts, clickbait that the video doesn't deliver, or irrelevant hashtags.
 - Posting schedule (Europe/Rome): Mon/Tue/Thu YT 19:00, TikTok 20:00 · Wed YT 19:00, TikTok 20:30 ·
   Fri YT 17:00, TikTok 18:00 · Sat/Sun YT 18:00, TikTok 19:00. Draft ready ≥3 h before the YouTube slot.
 - One draft with two destinations, show it to the owner, publish only after approval. Log the story in `STORIES.md`.
