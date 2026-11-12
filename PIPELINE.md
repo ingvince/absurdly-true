@@ -68,10 +68,12 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
 - SEO (always): run `vidiq_keyword_research` on the topic; YouTube title ≤ 100 chars with the main keyword + emoji +
   `#shorts`; description = hook line, 1-2 lines of story, "📜 A true story…", "🔔 Subscribe for a new absurdly true story
   every day!", "📱 Also on TikTok: @AbsurdlyTrue_Shorts", then 6-8 hashtags; 12-16 tags from the research; category 27
-  (Education); privacyStatus public with publishAt 19:00 Europe/Rome.
+  (Education); privacyStatus public with publishAt = today's YouTube slot (schedule below).
 - TikTok: caption with hook + emoji + 1 line + "Follow for a new absurdly true story every day! 📜" + ~8 hashtags
   (#history #truestory #historytok #didyouknow #fyp + topic tags); privacyLevel PUBLIC_TO_EVERYONE, allowComment true,
-  musicUsageConfirmed true, isAiGenerated true; publishAt 20:00 Europe/Rome.
+  musicUsageConfirmed true, isAiGenerated true; publishAt = today's TikTok slot.
+- Posting schedule (Europe/Rome): Mon/Tue/Thu YT 19:00, TikTok 20:00 · Wed YT 19:00, TikTok 20:30 ·
+  Fri YT 17:00, TikTok 18:00 · Sat/Sun YT 18:00, TikTok 19:00. Draft ready ≥3 h before the YouTube slot.
 - One draft with two destinations, show it to the owner, publish only after approval. Log the story in `STORIES.md`.
 - Local copy (owner request, from 2026-11-13 on): save ONLY the final captioned version (the one published) to the
   owner's PC in `Desktop\YOUTUBE CHANNEL\` (C:\Users\penne\Desktop\YOUTUBE CHANNEL), named `<Title_With_Underscores>.mp4`
