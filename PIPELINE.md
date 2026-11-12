@@ -75,8 +75,8 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
 - One draft with two destinations, show it to the owner, publish only after approval. Log the story in `STORIES.md`.
 - Local copy (owner request, from 2026-11-13 on): save ONLY the final captioned version (the one published) to the
   owner's PC in `Desktop\YOUTUBE CHANNEL\` (C:\Users\penne\Desktop\YOUTUBE CHANNEL), named `<Title_With_Underscores>.mp4`
-  (e.g. `The_War_Over_One_Pig.mp4`). Use device_request_folder_access on ~/Desktop, then SendUserFile →
-  device_commit_files with the fileUuid. Never copy final_nocaptions.mp4 there.
+  (e.g. `The_War_Over_One_Pig.mp4`). The folder is attached to the scheduled task (no access request needed):
+  SendUserFile → device_commit_files with the fileUuid; retry up to 3 times on timeout. Never copy final_nocaptions.mp4 there.
 
 ## Brand
 - `brand/banner_2560x1440.png` (title + slogan in the all-devices safe area, cast in the desktop band),
