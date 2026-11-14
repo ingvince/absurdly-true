@@ -7,7 +7,7 @@ Reference production: `videos/2026-11-12_the-war-over-one-pig/` (approved by the
 Talk to the owner in **Italian**; all on-screen/video text and metadata in **English**.
 
 ## Every day
-- Publish **YouTube Shorts at 19:00** and **TikTok at 20:00** (Europe/Rome), one NEW story per day, always WITH captions.
+- Publish at the day's slots (see the posting schedule in section 7), one NEW story per day, always WITH captions.
 - Never repeat a story: check `STORIES.md` and append the new one.
 - Posts are created as vidIQ drafts with `publishAt`; the owner must see and approve them before
   `vidiq_social_post_publish` is called (vidIQ requires it). Send a push/SendUserMessage with the preview and wait.
@@ -16,13 +16,19 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
 - Pick one surprising TRUE story or curiosity with a physical cause/effect that animates well; verify key facts with
   web search; legends must be framed as "legend says". No real living people as jokes, nothing graphic or political.
 - Script: hook (absurd fact, no setup) → setting → 2-4 escalating beats → pivot → short ironic twist as last words.
-  Plain spoken English, contractions, numbers written as words, ~3.7 words/s, 25-45 s (≈ 90-160 words).
+  Plain spoken English, contractions, numbers written as words. The MiniMax voice speaks ~2.6 words/s: 85-110 words
+  give 32-43 s.
 
 ## 2. Voice (MiniMax, no other TTS)
 - Site: https://www.minimax.io/audio/text-to-speech (owner is logged in). Use the **built-in browser** of the
   Claude desktop app (tools `mcp__remote-devices__Claude_Browser__*`; needs the app open on the owner's computer).
-- Voice: **"Decent Young Man"** (English), default speed. Paste the script, generate, download the mp3, then bring it
-  into the workspace (device_stage_files / downloads) as `/home/claude/pig/voice.mp3`.
+- Voice: **"Decent Young Man"** (English), default speed: search it in the voice picker and click its Use button.
+- Type the script with the keyboard into the editor (clear it with the eraser button, click the text area first, then
+  verify with JS that the text appears exactly once and the counter = script length — JS insertText does not register,
+  and a delayed keyboard type can double the text). Generate, check the duration (audio element `duration`).
+- Download automatically (no Save-as dialog): read the network request `GET /v1/api/audio/details?audio_id=…`
+  (read_network_requests with its requestId) → `audio_url` (https://cdn.hailuoai.video/…mp3) and `curl` it directly
+  into `/home/claude/pig/voice.mp3` in the cloud workspace (all domains allowed since 2026-11-14).
 - If the computer/app is not reachable: tell the owner (Italian) and retry later; do NOT switch voice provider.
 
 ## 3. Timing
@@ -47,7 +53,7 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
   cards hidden in geometry, text mirrored, props too close to lens. Remember: looking toward +z, world +x is screen-LEFT.
 - Full render: two halves in parallel in the background
   `RESUME=1 node render.mjs frames "0-N/2"` and `PORT=8124 RESUME=1 node render.mjs frames "N/2+1-N"`
-  (~5-9 s/frame on 2 CPUs ≈ 1.5-2 h for 45 s; plan the run so it is done well before 19:00).
+  (~5-9 s/frame on 2 CPUs ≈ 1-1.5 h for 40 s; when one half finishes, start a third renderer on the tail of the other).
 
 ## 5. Sound (`engine/audio/`)
 - `audio.py`: write a new cue table for the story (march-style score with the kit instruments, music STOPS at the twist
@@ -62,9 +68,14 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
   yellow + bigger, pop-in, keywords bigger, numbers as digits. Update the KEY set and DISPLAY overrides per story.
 
 ## 7. Publish (vidIQ)
-- Commit the final files to `videos/<date>_<slug>/` (final_captions.mp4, final_nocaptions.mp4, voice.mp3, phrases.json,
-  metadata.md) and push. Upload with `vidiq_video_upload` using the raw URL
-  `https://raw.githubusercontent.com/ingvince/absurdly-true/main/videos/<date>_<slug>/final_captions.mp4`.
+- Hosting (owner-authorized 2026-11-14, every run): the Cowork scheduled task has no repository attached, so `git push`
+  is always refused by the git proxy. Instead:
+  - Video: `mcp__Higgsfield__media_upload` (filename `<Title_With_Underscores>.mp4`, video/mp4) → `curl -X PUT -H
+    "Content-Type: video/mp4" -H "If-None-Match: *" --data-binary @out/final_captions.mp4 '<upload_url>'` (expect 200) →
+    `media_confirm` (type video) → `vidiq_video_upload` with the returned cloudfront `url`. Storage only: 0 credits
+    (check `mcp__Higgsfield__balance` before/after; stop and tell the owner if it ever changes).
+  - Repo text files (STORIES.md, PIPELINE.md, videos/<date>_<slug>/metadata.md with the video URL): push with the GitHub
+    connector `mcp__github__push_files` (owner ingvince, repo absurdly-true, branch main). Never push mp4/mp3 there.
 - SEO & reach checklist (owner request: fill EVERY available field, maximise discoverability — always):
   1. Research: `vidiq_keyword_research` on the topic (main keyword + 2-3 variants: people, place, year, "true story",
      "history facts"); check `vidiq_trending_videos` / `vidiq_outliers` for the niche to borrow proven angles and hashtags.
