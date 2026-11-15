@@ -1,5 +1,6 @@
 # Level lock: music at 50 % of the voice (gated RMS, -6.0 dB), SFX at 50 % or less with peaks <= 0.7 x voice peak.
 # Voice untouched. One linear gain per stem, no ducking, no compression. Writes mix.wav (48 kHz stereo).
+# Length = frames in ../work/phrases.json (always matches the voice; no hard-coded duration).
 import subprocess, numpy as np
 from dsp import SR, read_wav, write_wav
 
@@ -15,7 +16,8 @@ def gated_rms(x, win=0.4, rel_db=-30.0):
 
 def mono(x): return x.mean(axis=1) if x.ndim == 2 else x
 
-N = round(1347 / 30 * SR)
+import json
+N = round(json.load(open('../work/phrases.json'))['frames'] / 30 * SR)
 v = load_voice('../voice.mp3'); v = np.pad(v, (0, max(0, N - len(v))))[:N]
 from scipy.io import wavfile
 m = wavfile.read('music.wav')[1].astype(float)[:N]
