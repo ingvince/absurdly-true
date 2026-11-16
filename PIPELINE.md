@@ -54,6 +54,8 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
 - Full render: two halves in parallel in the background
   `RESUME=1 node render.mjs frames "0-N/2"` and `PORT=8124 RESUME=1 node render.mjs frames "N/2+1-N"`
   (~5-9 s/frame on 2 CPUs ≈ 1-1.5 h for 40 s; when one half finishes, start a third renderer on the tail of the other).
+  Big wide sets (tall tower, many meshes, 70 m shadow maps) run 12-17 s/frame: start the full render early (by ~11:00 Rome).
+  A `keys()` creep also moves the camera UP toward a high look point: pass a small creep (0.0008) on tilted-up shots.
 
 ## 5. Sound (`engine/audio/`)
 - `audio.py`: write a new cue table for the story (march-style score with the kit instruments, music STOPS at the twist
