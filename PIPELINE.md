@@ -30,6 +30,8 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
   (read_network_requests with its requestId) → `audio_url` (https://cdn.hailuoai.video/…mp3) and `curl` it directly
   into `/home/claude/pig/voice.mp3` in the cloud workspace (all domains allowed since 2026-11-14).
 - If the computer/app is not reachable: tell the owner (Italian) and retry later; do NOT switch voice provider.
+- If MiniMax shows "Sign In" (logged out) and Generate opens a "Continue with Google" popup: do NOT log in yourself;
+  push-notify the owner to log in from the Browser pane (Ctrl+Shift+B), keep working on story/sets, retry later (2026-11-19).
 
 ## 3. Timing
 - Detect speech segments: `ffmpeg -i voice.mp3 -af silencedetect=noise=-35dB:d=0.18 -f null -`
@@ -54,6 +56,7 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
 - Full render: two halves in parallel in the background
   `RESUME=1 node render.mjs frames "0-N/2"` and `PORT=8124 RESUME=1 node render.mjs frames "N/2+1-N"`
   (~5-9 s/frame on 2 CPUs ≈ 1-1.5 h for 40 s; when one half finishes, start a third renderer on the tail of the other).
+  City sets with many tall towers (Bologna gate) ran ~9-10 s/frame; a 41.6 s story took ~1 h 30 on 2 CPUs.
   Big wide sets (tall tower, many meshes, 70 m shadow maps) run 12-17 s/frame: start the full render early (by ~11:00 Rome).
   A `keys()` creep also moves the camera UP toward a high look point: pass a small creep (0.0008) on tilted-up shots.
 
@@ -70,6 +73,8 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
   yellow + bigger, pop-in, keywords bigger, numbers as digits. Update the KEY set and DISPLAY overrides per story.
 
 ## 7. Publish (vidIQ)
+- If vidIQ paid tools answer "Not enough credits" (keyword research, outliers, title scoring cost 5 credits each),
+  do the SEO by hand from the verified facts; upload/draft/publish/status are free and still work (2026-11-19).
 - Hosting (owner-authorized 2026-11-14, every run): the Cowork scheduled task has no repository attached, so `git push`
   is always refused by the git proxy. Instead:
   - Video: `mcp__Higgsfield__media_upload` (filename `<Title_With_Underscores>.mp4`, video/mp4) → `curl -X PUT -H
