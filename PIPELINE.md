@@ -8,7 +8,8 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
 
 ## Every day
 - Publish at the day's slots (see the posting schedule in section 7), one NEW story per day, always WITH captions.
-- Never repeat a story: check `STORIES.md` and append the new one.
+- Never repeat a story: check `STORIES.md` AND `vidiq_social_post_list` (11-17 Great Stink and 11-20 Dancing Plague were
+  published but not logged; on 2026-11-21 a dancing-plague voice was made before the owner noticed), then append the new one.
 - Posts are created as vidIQ drafts with `publishAt`; the owner must see and approve them before
   `vidiq_social_post_publish` is called (vidIQ requires it). Send a push/SendUserMessage with the preview and wait.
 
@@ -29,6 +30,9 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
 - Download automatically (no Save-as dialog): read the network request `GET /v1/api/audio/details?audio_id=…`
   (read_network_requests with its requestId) → `audio_url` (https://cdn.hailuoai.video/…mp3) and `curl` it directly
   into `/home/claude/pig/voice.mp3` in the cloud workspace (all domains allowed since 2026-11-14).
+- If the eraser button does not clear the editor: click the text, `ctrl+a`, `Delete`, then type (2026-11-21).
+- Check the leading silence of the mp3 (silencedetect): one take started after 1.5 s of silence; regenerate or trim
+  only the silence before the first word so the hook starts at once.
 - If the computer/app is not reachable: tell the owner (Italian) and retry later; do NOT switch voice provider.
 - If MiniMax shows "Sign In" (logged out) and Generate opens a "Continue with Google" popup: do NOT log in yourself;
   push-notify the owner to log in from the Browser pane (Ctrl+Shift+B), keep working on story/sets, retry later (2026-11-19).
@@ -56,6 +60,7 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
 - Full render: two halves in parallel in the background
   `RESUME=1 node render.mjs frames "0-N/2"` and `PORT=8124 RESUME=1 node render.mjs frames "N/2+1-N"`
   (~5-9 s/frame on 2 CPUs ≈ 1-1.5 h for 40 s; when one half finishes, start a third renderer on the tail of the other).
+  Hunt field set (2026-11-21, ~30 cards with bunnies) ran ~15 s/frame per worker (2 workers) ≈ 2 h 20 for 37 s.
   City sets with many tall towers (Bologna gate) ran ~9-10 s/frame; a 41.6 s story took ~1 h 30 on 2 CPUs.
   Big wide sets (tall tower, many meshes, 70 m shadow maps) run 12-17 s/frame: start the full render early (by ~11:00 Rome).
   A `keys()` creep also moves the camera UP toward a high look point: pass a small creep (0.0008) on tilted-up shots.
@@ -92,7 +97,8 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
      story with names, place, year and the "absurd" twist; a comment-bait question ("Would you have fired the shot? 👇");
      "📜 A true story…", "🔔 Subscribe for a new absurdly true story every day!", "📱 Also on TikTok: @AbsurdlyTrue_Shorts";
      then 5-8 hashtags (first 3 = most relevant, they show above the title; never more than 15).
-  4. YouTube tags: fill toward the 500-char limit (20-30 tags): main keyword, variants, names, place, year, era, topic
+  4. YouTube tags: fill toward the 500-char limit (20-30 tags; YouTube counts each multi-word tag +2 for quotes and the
+     commas: keep sum(len+2 if space)+commas ≤ ~450, or the upload fails with invalidTags — happened 2026-11-21): main keyword, variants, names, place, year, era, topic
      phrases, "absurdly true", "history shorts", "true story", "did you know", "weird history", "history facts".
   5. YouTube settings: categoryId 27 (Education), privacyStatus public, publishAt = today's YouTube slot. Custom
      thumbnail (`thumbnailImageId`) only if the channel is verified — Shorts usually ignore it, so skip if refused.
