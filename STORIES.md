@@ -12,8 +12,9 @@
 | 2026-11-19 | The War of the Bucket | Battle of Zappolino 1325, Modena vs Bologna, the stolen bucket (cause = legend) | videos/2026-11-19_the-war-of-the-bucket |
 | 2026-11-20 | The Dancing Plague of 1518 | Strasbourg dancing mania 1518 (logged late, published via vidIQ) | — |
 | 2026-11-21 | Napoleon Was Attacked by Hundreds of Rabbits | Napoleon's rabbit hunt, 1807 (Thiébault's memoirs) | videos/2026-11-21_napoleon-attacked-by-rabbits |
+| 2026-11-22 | The Bath That Caught a Cheat | Archimedes' Eureka, King Hiero's crown, Syracuse (legend via Vitruvius) | videos/2026-11-22_the-bath-that-caught-a-cheat |
 
 Before picking a story ALSO check `vidiq_social_post_list` (last 30 days): some runs were published but never logged here.
 
 ## Unused verified ideas (from the first idea list)
-- The Bath That Caught a Cheat (Archimedes' Eureka; legend via Vitruvius)
+- (none left: research a new verified story)
