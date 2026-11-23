@@ -10,8 +10,8 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
 - Publish at the day's slots (see the posting schedule in section 7), one NEW story per day, always WITH captions.
 - Never repeat a story: check `STORIES.md` AND `vidiq_social_post_list` (11-17 Great Stink and 11-20 Dancing Plague were
   published but not logged; on 2026-11-21 a dancing-plague voice was made before the owner noticed), then append the new one.
-- Posts are created as vidIQ drafts with `publishAt`; the owner must see and approve them before
-  `vidiq_social_post_publish` is called (vidIQ requires it). Send a push/SendUserMessage with the preview and wait.
+- Posts are created as vidIQ drafts with `publishAt` and published at once with `vidiq_social_post_publish`
+  (owner: "Pubblica sempre senza approvazione", 2026-11-15); a slot already passed = publish immediately (2026-11-23).
 
 ## 1. Story + script (skills: cartoon-audio-short Stage 2-3, cartoon-3d-short)
 - Pick one surprising TRUE story or curiosity with a physical cause/effect that animates well; verify key facts with
@@ -42,6 +42,12 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
 - Map script phrases (split at punctuation) to segments → `work/phrases.json` (see `engine/work/make_timing.py`).
   Total frames = round(duration × 30). The video lasts exactly as long as the voice.
 
+## 3b. Word timing (2026-11-23)
+- Exact word timestamps: `pip install faster-whisper --break-system-packages`; decode the mp3 with ffmpeg to 16 kHz f32
+  raw (PyAV in this image breaks on file paths) and run `WhisperModel('base.en', compute_type='int8')` with
+  `word_timestamps=True`; zip the words with the script tokens → `work/phrases.json` (`phrases` with w0/w1 + `words`).
+  Then time each caption word in `captions.py` from these real timestamps instead of syllable weights.
+
 ## 4. Picture (three.js engine in `engine/`)
 - Set up: `cp -r engine/* /home/claude/pig/` (absolute paths assume `/home/claude/pig`), then
   `ln -s /opt/npm-tools/node_modules /home/claude/pig/node_modules` (Playwright + Chromium are preinstalled).
@@ -61,6 +67,8 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
   `RESUME=1 node render.mjs frames "0-N/2"` and `PORT=8124 RESUME=1 node render.mjs frames "N/2+1-N"`
   (~5-9 s/frame on 2 CPUs ≈ 1-1.5 h for 40 s; when one half finishes, start a third renderer on the tail of the other).
   Hunt field set (2026-11-21, ~30 cards with bunnies) ran ~15 s/frame per worker (2 workers) ≈ 2 h 20 for 37 s.
+  College quad set (2026-11-23, Byron): ~3 s/frame per worker, 1097 frames ≈ 33 min on 2 workers.
+  Vertical frame is narrow: at fov 45-50 only ±0.9 m is visible 3.5 m away — keep two actors within ~1.2 m of each other.
   City sets with many tall towers (Bologna gate) ran ~9-10 s/frame; a 41.6 s story took ~1 h 30 on 2 CPUs.
   Big wide sets (tall tower, many meshes, 70 m shadow maps) run 12-17 s/frame: start the full render early (by ~11:00 Rome).
   A `keys()` creep also moves the camera UP toward a high look point: pass a small creep (0.0008) on tilted-up shots.
@@ -111,7 +119,10 @@ Talk to the owner in **Italian**; all on-screen/video text and metadata in **Eng
      intro, loop-friendly ending. Never fake facts, clickbait that the video doesn't deliver, or irrelevant hashtags.
 - Posting schedule (Europe/Rome): Mon/Tue/Thu YT 19:00, TikTok 20:00 · Wed YT 19:00, TikTok 20:30 ·
   Fri YT 17:00, TikTok 18:00 · Sat/Sun YT 18:00, TikTok 19:00. Draft ready ≥3 h before the YouTube slot.
-- One draft with two destinations, show it to the owner, publish only after approval. Log the story in `STORIES.md`.
+- One draft with two destinations; publish it right away without waiting for approval (standing owner instruction).
+  If a slot time has already passed when the draft is ready, drop that destination's publishAt and publish it
+  immediately (owner, 2026-11-23: "pubblica sempre quando l'orario di pubblicazione prestabilito è stato superato").
+  Log the story in `STORIES.md`.
 - Local copy (owner request, from 2026-11-13 on): save ONLY the final captioned version (the one published) to the
   owner's PC in `Desktop\YOUTUBE CHANNEL\` (C:\Users\penne\Desktop\YOUTUBE CHANNEL), named `<Title_With_Underscores>.mp4`
   (e.g. `The_War_Over_One_Pig.mp4`). The folder is attached to the scheduled task (no access request needed):
