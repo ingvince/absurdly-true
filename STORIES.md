@@ -15,6 +15,7 @@
 | 2026-11-22 | The Bath That Caught a Cheat | Archimedes' Eureka, King Hiero's crown, Syracuse (legend via Vitruvius) | videos/2026-11-22_the-bath-that-caught-a-cheat |
 | 2026-11-23 | Dogs Were Banned, So Lord Byron Got a Pet Bear | Lord Byron's tame bear at Trinity College, Cambridge (letter to Elizabeth Pigot, Oct 1807) | videos/2026-11-23_lord-byron-brought-a-bear-to-college |
 | 2026-11-24 | He "Won" the 1904 Olympic Marathon… in a Car | 1904 St. Louis Olympic marathon: Fred Lorz rode ~11 miles in a car; winner Thomas Hicks given strychnine + egg whites + brandy | videos/2026-11-24_the-marathon-won-in-a-car |
+| 2026-11-25 | How Emergency Calls Actually Work (Even With No Signal) | Reply to a TikTok comment: 911/112 call journey, AML GPS location, dispatcher/CPR, SOS + emergency roaming on another carrier, satellite SOS, 999 London 1937. Made and scheduled on 2026-11-24 by the owner's request: the 2026-11-25 daily run must NOT make another video. | videos/2026-11-25_how-emergency-calls-work |
 
 Before picking a story ALSO check `vidiq_social_post_list` (last 30 days): some runs were published but never logged here.
 
