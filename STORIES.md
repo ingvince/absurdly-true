@@ -14,6 +14,7 @@
 | 2026-11-21 | Napoleon Was Attacked by Hundreds of Rabbits | Napoleon's rabbit hunt, 1807 (Thiébault's memoirs) | videos/2026-11-21_napoleon-attacked-by-rabbits |
 | 2026-11-22 | The Bath That Caught a Cheat | Archimedes' Eureka, King Hiero's crown, Syracuse (legend via Vitruvius) | videos/2026-11-22_the-bath-that-caught-a-cheat |
 | 2026-11-23 | Dogs Were Banned, So Lord Byron Got a Pet Bear | Lord Byron's tame bear at Trinity College, Cambridge (letter to Elizabeth Pigot, Oct 1807) | videos/2026-11-23_lord-byron-brought-a-bear-to-college |
+| 2026-11-24 | He "Won" the 1904 Olympic Marathon… in a Car | 1904 St. Louis Olympic marathon: Fred Lorz rode ~11 miles in a car; winner Thomas Hicks given strychnine + egg whites + brandy | videos/2026-11-24_the-marathon-won-in-a-car |
 
 Before picking a story ALSO check `vidiq_social_post_list` (last 30 days): some runs were published but never logged here.
 
